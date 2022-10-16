@@ -48,7 +48,12 @@ fi # [ -f $5 ]
 
 
 # if [[ "$@" == "" ]]; then
-pyinstaller --clean -y --dist ./dist/windows --workpath /tmp $SPEC_FILE
+files=$(ls *.spec)
+for filename in $files
+do
+    pyinstaller --clean -y --dist ./dist/windows --workpath /tmp $filename
+done
+#pyinstaller --clean -y --dist ./dist/windows --workpath /tmp $SPEC_FILE
 chown -R --reference=. ./dist/windows
 # else
     # sh -c "$@"
